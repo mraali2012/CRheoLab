@@ -15,6 +15,8 @@ class Cell
 
         // 
         vector3 getCenterOfMass() const;
+        double getSkewness() const;
+        void setSkewness(double);
 
          
     protected:

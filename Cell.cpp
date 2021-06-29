@@ -14,3 +14,14 @@ vector3 Cell::getCenterOfMass() const
 {
     return centerOfMass_;
 }
+
+double Cell::getSkewness() const
+{
+    return skewness_;
+}
+
+void Cell::setSkewness(double skewness) 
+{
+    skewness_=skewness;
+}
+
