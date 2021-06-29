@@ -431,7 +431,7 @@ void Mesh::computeFaceWeightingFactor()
         double faceSkewness=abs(mag(ptFInt-ptFaceCM)/mag(vecON));
 
         cellList_[cellOwn].setSkewness(std::max(cellList_[cellOwn].getSkewness(),faceSkewness));
-        cellList_[cellNei].setSkewness(std::max(cellList_[cellNei].getSkewness(),faceSkewness));
+        cellList_[cellNei].setSkewness(std::max(cellList_[cellNei].getSkewness(),faceSkewness)); 
 
     }
      // loop on the boundary faces
