@@ -403,3 +403,36 @@ void Mesh::computeFaceWeightingFactor()
 
 }
 
+
+// Method for the calculation of all the mesh cell Skewness
+ void Mesh::calcCellSkewness()
+ {
+
+   // loop for the inner cell faces
+      for ( int i = 0; i < nInteriorFaces_; i++ )
+    {
+        int cellOwn=faceList_[i].owner_;
+        int cellNei=faceList_[i].neighbour_;
+
+        vector3 ptOwn=cellList_[cellOwn].centerOfMass_;
+        vector3 ptNei=cellList_[cellNei].centerOfMass_;
+
+        vector3 ptFaceCM=faceList_[i].centerOfMass_;
+
+        vector3 vecOF=ptFaceCM-ptOwn;
+        vector3 vecFN=ptNei-ptFaceCM;
+        vector3 vecON=ptNei-ptOwn;
+
+        double dOF=abs((vecOF&faceList_[i].areaVector_)/mag(faceList_[i].areaVector_));
+        double dFN=abs((vecFN&faceList_[i].areaVector_)/mag(faceList_[i].areaVector_));
+
+        vector3 ptFInt=ptOwn+(dOF/(dOF+dFN))*vecOF;
+
+        double faceSkewness=abs(mag(ptFInt-ptFaceCM)/mag(vecON));
+
+        cellList_[cellOwn].skewness_=max(cellList_[cellOwn].skewness_,faceSkewness);
+
+    }
+
+
+ }

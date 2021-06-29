@@ -39,6 +39,9 @@ public:
 
   void computeFaceWeightingFactor();
 
+  // Method for the calculation of all the mesh cell Skewness
+ void calcCellSkewness();
+
 private:
 
   void readMesh();
